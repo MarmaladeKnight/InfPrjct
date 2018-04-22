@@ -13,7 +13,7 @@ var gulp = require('gulp'), // Подключаем Gulp
     concatCss = require('gulp-concat-css');
 
 gulp.task('sass', function() { // Создаем таск Sass
-    return gulp.src('app/common.blocks/**/*.scss') // Берем источник
+    return gulp.src('app/blocks/**/*.scss') // Берем источник
         .pipe(sass()) // Преобразуем Sass в CSS посредством gulp-sass
         .pipe(autoprefixer(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true })) // Создаем префиксы
         .pipe(gulp.dest('app/tmp')) // Выгружаем результата в папку app/css
@@ -27,16 +27,16 @@ gulp.task('browser-sync', function() { // Создаем таск browser-sync
         }
     });
 });
-
+/*
 gulp.task('scripts-libs', function() {
     return gulp.src([ // Берем все необходимые библиотеки
-            'app/library.blocks/magnific-popup/dist/jquery.magnific-popup.min.js' // Берем Magnific Popup
+            'app/library.blocks/magnific-popup/dist/jquery.magnific-popup.min.js'
         ])
         .pipe(concat('libs.min.js')) // Собираем их в кучу в новом файле libs.min.js
         .pipe(uglify()) // Сжимаем JS файл
         .pipe(gulp.dest('app/js')); // Выгружаем в папку app/js
 });
-
+*/
 gulp.task('css', ['sass'], function() {
     return gulp.src('app/tmp/**/*.css') // Выбираем файл для минификации
         .pipe(concatCss("main.css"))
@@ -47,7 +47,7 @@ gulp.task('css', ['sass'], function() {
 });
 
 gulp.task('scripts', function() {
-    return gulp.src('app/common.blocks/**/*.js') // Выбираем файл для минификации
+    return gulp.src('app/blocks/**/*.js') // Выбираем файл для минификации
         .pipe(concat("main.min.js"))
         .pipe(uglify())
         .pipe(gulp.dest('app/js'))
@@ -58,10 +58,10 @@ gulp.task('tmp', function() {
     return del.sync('app/tmp');
 });
 
-gulp.task('watch', ['browser-sync', 'css', 'scripts', 'scripts-libs', 'tmp'], function() {
-    gulp.watch('app/common.blocks/**/*.scss', ['sass']); // Наблюдение за sass файлами в папке sass
+gulp.task('watch', ['browser-sync', 'css', 'scripts'], function() {
+    gulp.watch('app/blocks/**/*.scss', ['sass']); // Наблюдение за sass файлами в папке sass
     gulp.watch('app/pages/*.html', browserSync.reload); // Наблюдение за HTML файлами в корне проекта
-    gulp.watch('app/common.blocks/**/*.js', ['scripts']);
+    gulp.watch('app/blocks/**/*.js', ['scripts']);
     gulp.watch('app/tmp/*.css', ['css']);
 });
 
@@ -77,11 +77,11 @@ gulp.task('img', function() {
             progressive: true,
             svgoPlugins: [{ removeViewBox: false }],
             use: [pngquant()]
-        })) /**/ )
+        })))
         .pipe(gulp.dest('dist/img')); // Выгружаем на продакшен
 });
 
-gulp.task('build', ['clean', 'img', 'css', 'scripts', 'scripts-libs', 'tmp'], function() {
+gulp.task('build', ['clean', 'img', 'css', 'scripts', 'tmp'], function() {
 
     var buildCss = gulp.src([ // Переносим библиотеки в продакшен
             'app/css/main.min.css',

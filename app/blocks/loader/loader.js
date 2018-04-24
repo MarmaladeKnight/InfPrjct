@@ -1,5 +1,5 @@
 'use strict'
-
+/*
 var loader = new PIXI.Application(
     window.innerWidth,
     window.innerHeight, {
@@ -40,3 +40,4 @@ function loaderVanishing() {
     document.getElementById('loader').style.transition = "all 0.5s";
     document.getElementById('loader').style.opacity = "0";
 }
+*/

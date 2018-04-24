@@ -44,6 +44,18 @@
         </div>
     </nav>
 
+    <div class="wrapper">
+        <div id="classList" class="d-flex flex-row flex-wrap justify-content-around">
+            <div class="col-5 col-sm-3 col-md-3 col-lg-2 col-xl-2 table_table-block" v-for="todo in todos">
+                <img class="table_table-block_img" src="../img/doge.png" alt="" srcset="">
+                <a href="#" class="table_table-block_title">
+                    <h5>
+                        {{ todo.text }}
+                    </h5>
+                </a>
+            </div>
+        </div>
+    </div>
 
 
     <script src="../js/main.min.js"></script>

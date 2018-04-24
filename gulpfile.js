@@ -27,16 +27,7 @@ gulp.task('browser-sync', function() { // Создаем таск browser-sync
         }
     });
 });
-/*
-gulp.task('scripts-libs', function() {
-    return gulp.src([ // Берем все необходимые библиотеки
-            'app/library.blocks/magnific-popup/dist/jquery.magnific-popup.min.js'
-        ])
-        .pipe(concat('libs.min.js')) // Собираем их в кучу в новом файле libs.min.js
-        .pipe(uglify()) // Сжимаем JS файл
-        .pipe(gulp.dest('app/js')); // Выгружаем в папку app/js
-});
-*/
+
 gulp.task('css', ['sass'], function() {
     return gulp.src('app/tmp/**/*.css') // Выбираем файл для минификации
         .pipe(concatCss("main.css"))

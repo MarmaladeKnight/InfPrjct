@@ -1,0 +1,4 @@
+.head {
+  width: 100%;
+  position: fixed !important;
+  z-index: 2; }

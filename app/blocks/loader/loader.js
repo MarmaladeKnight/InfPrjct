@@ -10,7 +10,9 @@ var loader = new PIXI.Application(
     }
 );
 
-document.body.appendChild(loader.view);
+document.getElementById('loader').appendChild(loader.view);
+
+document.getElementById('loader').style.opacity = "0";
 
 loader.renderer.autoResize = true;
 loader.renderer.view.style.position = "absolute";
@@ -30,12 +32,11 @@ loader.ticker.add(function(delta) {
     sticker.x = loader.screen.width / 2;
     sticker.y = loader.screen.height / 2;
 });
-/*
-loader.ticker.add(function(delta) {
-    a = 10;
-    if (a > 100000000000) {
-        loader.destroy;
-    }
 
-});
-*/
+setTimeout("loaderVanishing()", 1500);
+setTimeout("loader.destroy()", 2000);
+
+function loaderVanishing() {
+    document.getElementById('loader').style.transition = "all 0.5s";
+    document.getElementById('loader').style.opacity = "0";
+}

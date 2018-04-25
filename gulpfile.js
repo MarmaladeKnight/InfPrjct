@@ -40,7 +40,7 @@ gulp.task('css', ['sass'], function() {
 gulp.task('scripts', function() {
     return gulp.src('app/blocks/**/*.js') // Выбираем файл для минификации
         .pipe(concat("main.min.js"))
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest('app/js'))
         .pipe(browserSync.reload({ stream: true }));
 });

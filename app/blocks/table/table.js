@@ -1,42 +1,17 @@
 var classList = new Vue({
     el: '#classList',
     data: {
-        todos: [
-            { text: 'Михаил Попов' },
-            { text: 'Евгений Кухта' },
-            { text: 'Михаил Попов' },
-            { text: 'Евгений Кухта' },
-            { text: 'Михаил Попов' },
-            { text: 'Евгений Кухта' },
-            { text: 'Михаил Попов' },
-            { text: 'Евгений Кухта' },
-            { text: 'Михаил Попов' },
-            { text: 'Евгений Кухта' },
-            { text: 'Михаил Попов' },
-            { text: 'Евгений Кухта' },
-            { text: 'Михаил Попов' },
-            { text: 'Евгений Кухта' },
-            { text: 'Михаил Попов' },
-            { text: 'Евгений Кухта' },
-            { text: 'Михаил Попов' },
-            { text: 'Михаил Попов' },
-            { text: 'Евгений Кухта' },
-            { text: 'Михаил Попов' },
-            { text: 'Евгений Кухта' },
-            { text: 'Михаил Попов' },
-            { text: 'Евгений Кухта' },
-            { text: 'Михаил Попов' },
-            { text: 'Евгений Кухта' },
-            { text: 'Михаил Попов' },
-            { text: 'Евгений Кухта' },
-            { text: 'Михаил Попов' },
-            { text: 'Евгений Кухта' },
-            { text: 'Михаил Попов' },
-            { text: 'Евгений Кухта' },
-            { text: 'Михаил Попов' },
-            { text: 'Евгений Кухта' },
-            { text: 'Михаил Попов' },
-            { text: 'Евгений Кухта' }
-        ]
+        posts: []
+    },
+    methods: {
+        getPostsViaREST: function() {
+            axios.get("https://jsonplaceholder.typicode.com/posts")
+                .then(response => {
+                    this.posts = response.data
+                })
+        }
+    },
+    beforeMount() {
+        this.getPostsViaREST()
     }
 })
